@@ -497,29 +497,41 @@ export const SetupMerged = () => {
   // START AUCTION
   const handleStartAuction = () => {
     const errors = []
+    
+    // Basic validation
     if (!auctionName.trim()) errors.push('Auction Name is required.')
     if (safeNumTeams <= 0) errors.push('Number of Teams must be greater than 0.')
     if (safePlayersPerTeam <= 0) errors.push('Players Per Team must be greater than 0.')
+    
+    // Budget validation
     if (budgetIsZeroOrInvalid) {
       errors.push(`Total ${unitLabel} per Team and Base ${unitLabel} per Player must be greater than 0.`)
     }
     if (budgetExceedsPurse) {
       errors.push('Base price × auction slots exceeds Total Purse per Team.')
     }
+    
+    // Rules validation
     if (rulesAreUnsetOrInvalid) {
       errors.push('Bidding Rules (Increment, Threshold, Increment After) are unset or invalid.')
     }
+    
+    // Team validation
     if (!teamCountMatches) {
       errors.push(`Team count mismatch: need ${safeNumTeams}, have ${teams.length}.`)
     }
     if (teams.some((t) => !t.name.trim())) {
       errors.push('Every team must have a name.')
     }
-    if (!extraPlayersAllowed && players.length < totalPlayersNeeded) {
-      errors.push(`Need ${totalPlayersNeeded} players, have ${players.length}.`)
-    }
+    
+    // Player validation - RELAXED
     if (players.length === 0) {
       errors.push('Please add at least 1 player.')
+    } else if (!extraPlayersAllowed && players.length < totalPlayersNeeded) {
+      errors.push(`Need ${totalPlayersNeeded} players, have ${players.length}. Enable "Extra players allowed" or add more players.`)
+    } else if (extraPlayersAllowed && players.length < totalPlayersNeeded) {
+      // Warn but allow
+      console.warn(`Warning: Only ${players.length} players for ${totalPlayersNeeded} slots. Using extra players mode.`)
     }
 
     setValidationErrors(errors)
@@ -1361,6 +1373,18 @@ export const SetupMerged = () => {
 
         {/* START AUCTION BUTTON */}
         <section className="bg-[#0a0a0a] rounded-lg p-6 sm:p-8 border border-neutral-900">
+          {/* Errors at bottom */}
+          {validationErrors.length > 0 && (
+            <div className="bg-[#170909] rounded-lg p-4 mb-6 space-y-2 border border-red-900/50">
+              <div className="text-sm font-bold text-red-400 mb-2">❌ CANNOT START - Fix these issues:</div>
+              {validationErrors.map((err, i) => (
+                <div key={i} className="text-xs font-semibold text-red-500">
+                  • {err}
+                </div>
+              ))}
+            </div>
+          )}
+          
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="text-xs text-neutral-400">
               All parameters set · Teams: {teams.length}/{safeNumTeams} · Players: {players.length}/{totalPlayersNeeded}
