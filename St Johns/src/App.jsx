@@ -3,6 +3,7 @@ import { AuctionProvider, AuctionContext } from './context/AuctionContext'
 import { Intro } from './pages/Intro'
 import { Home } from './pages/Home'
 import { Setup } from './pages/Setup'
+import { SetupMerged } from './pages/SetupMerged'
 import { Auction } from './pages/Auction'
 import { Display } from './pages/Display'
 import { Results } from './pages/Results'
@@ -38,7 +39,7 @@ const PageRenderer = () => {
     return <Home />
   }
   if (currentRoute === '/setup') {
-    return <Setup />
+    return <SetupMerged />
   }
   if (currentRoute === '/auction') {
     return <Auction />
