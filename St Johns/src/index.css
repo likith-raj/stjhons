@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Work Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-neon-green text-black font-bold rounded-lg transition-all duration-200 hover:shadow-lg cursor-pointer;
+    text-shadow: none;
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+  }
+
+  .btn-primary:hover {
+    @apply scale-105;
+    box-shadow: 0 0 30px rgba(57, 255, 20, 0.8);
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-700 text-white font-semibold rounded transition-all duration-200 hover:bg-gray-600 cursor-pointer;
+  }
+
+  .card {
+    @apply rounded-lg border border-gray-700 p-4 transition-all duration-200;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+  }
+}

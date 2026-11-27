@@ -1,0 +1,99 @@
+================================================================================
+ST JOHNS PLAYER AUCTION - EXACT COMMANDS TO RUN
+================================================================================
+
+STEP 1: FIRST TIME SETUP (Do this once)
+================================================================================
+
+Open PowerShell or Command Prompt and type:
+
+cd "St Johns"
+npm install
+
+This will download and install all dependencies (takes ~2 minutes).
+
+
+STEP 2: START THE DEVELOPMENT SERVER
+================================================================================
+
+cd "St Johns"
+npm run dev
+
+The server will start and show:
+  VITE v4.5.14  ready in 631 ms
+  ➜  Local:   http://localhost:5173/
+
+Leave this terminal running.
+
+
+STEP 3: OPEN IN BROWSER
+================================================================================
+
+Main Auction Window:
+  http://localhost:5173
+
+Display Screen Window (open in a new tab):
+  http://localhost:5173
+  Then navigate to Display page or use the DISPLAY button
+
+
+THAT'S IT! The app is now running.
+================================================================================
+
+
+OPTIONAL COMMANDS
+================================================================================
+
+Build for Production:
+  npm run build
+  Output: ./dist folder ready to upload to web server
+
+Preview Production Build:
+  npm run preview
+
+Stop the Dev Server:
+  Press Ctrl+C in the terminal where npm run dev is running
+
+
+TROUBLESHOOTING
+================================================================================
+
+If port 5173 is already in use:
+  npm run dev -- --port 3000
+
+If npm install fails:
+  npm install --legacy-peer-deps
+
+If build fails:
+  npm run build
+  Check output for errors, they are usually clear
+
+
+TESTING THE APP
+================================================================================
+
+1. Click "START AUCTION"
+2. Download Sample CSV
+3. Upload it
+4. Use defaults for Auction Rules (click NEXT)
+5. Create 4 teams (click NEXT)
+6. Click "START AUCTION 🎯"
+7. Click team buttons to place bids
+8. Click SOLD after a few bids
+9. See how live bidding works!
+
+For multi-tab display:
+- Keep main auction in one tab
+- Open another tab with same URL
+- Navigate to Display page in second tab
+- Bidding in main tab updates display tab in real-time!
+
+
+THAT'S ALL YOU NEED TO KNOW
+================================================================================
+
+For more details, see:
+- README.md - Full documentation
+- QUICKSTART.md - Quick setup guide
+- TESTING.md - Comprehensive testing guide
+- DELIVERY_SUMMARY.md - Project details
